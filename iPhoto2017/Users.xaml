@@ -1,0 +1,42 @@
+﻿<Window x:Class="iPhoto2017.Users"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:iPhoto2017"
+        mc:Ignorable="d"
+        Title="Users"  Height="800" Width="1200" Background="	#dfe3ee">
+    <Grid>
+        <TabControl HorizontalAlignment="Left" Height="759" Margin="0,10,0,0"  Background="	#dfe3ee" VerticalAlignment="Top" Width="1192">
+            <TabItem Header="Add User">
+                <Grid  Background="	#3b5998">
+                    <Label Content=" Name"  FontWeight="Bold" FontSize="20" Foreground="#dfe3ee" Margin="97,107,1018,587"/>
+                    <TextBox x:Name="txtEName" TextWrapping="Wrap" Background="#8b9dc3"  FontSize="20" FontWeight="Bold" TabIndex="1" Margin="214,107,719,592"/>
+                    <PasswordBox x:Name="passbox"  FontSize="20" FontWeight="Bold" Background="#8b9dc3"  Margin="214,187,719,512"/>
+                    <Label Content=" Password" Foreground="#dfe3ee"  FontWeight="Bold" FontSize="20" Margin="78,182,1004,512"/>
+                    <PasswordBox x:Name="passbox_Copy"  FontSize="20" FontWeight="Bold" Background="#8b9dc3"  Margin="214,257,719,442"/>
+                    <Label Content="Comfirm  Password" Foreground="#dfe3ee"  FontWeight="Bold" FontSize="20" Margin="10,252,972,442"/>
+                    <ComboBox Name="cbx" HorizontalAlignment="Left"  FontSize="20" FontWeight="Bold"   Background="#3b5998"  Margin="214,342,0,0" VerticalAlignment="Top" Width="253" SelectionChanged="ComboBox_SelectionChanged">
+                        <ComboBoxItem Content="admin" Background="#3b5998" />
+                        <ComboBoxItem Content="editor" Background="#3b5998" />
+                        <ComboBoxItem Content="sales"  Background="#3b5998"/>
+                    </ComboBox>
+                    <Label Content=" Type"  FontWeight="Bold" FontSize="20" Foreground="#dfe3ee" Margin="111,338,1004,356"/>
+                    <Button Content="Add" HorizontalAlignment="Left" Margin="252,459,0,0" VerticalAlignment="Top" Width="106" Height="44" Click="Button_Click"/>
+
+                </Grid>
+            </TabItem>
+            <TabItem Header="Users">
+                <Grid  Background="	#dfe3ee">
+                    <Grid  Background=" #3b5998">
+                        <TextBox x:Name="txtEName_Copy" TextWrapping="Wrap" Background="#8b9dc3"  FontSize="20" FontWeight="Bold" TabIndex="1" Margin="423,321,510,378"/>
+
+                        <DataGrid Name="datagrid" HorizontalAlignment="Left" Background="#3b5998"   FontSize="20" IsReadOnly="True" Height="257" Margin="10,30,0,0" VerticalAlignment="Top" Width="1148" SelectionChanged="datagrid_SelectionChanged"/>
+                        <Button Content="Delete" HorizontalAlignment="Left" Margin="480,390,0,0" VerticalAlignment="Top" Width="130" Height="53" Click="Button_Click_1"/>
+                    </Grid>
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+    </Grid>
+</Window>

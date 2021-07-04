@@ -1,0 +1,115 @@
+﻿<Window x:Class="iPhoto2017.Take_Order"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:iPhoto2017"
+        mc:Ignorable="d"
+        Title="Take_Order" Height="800" Width="1200" Background="#3b5998">
+    <Canvas>
+        <GroupBox x:Name="add"   Height="438" BorderBrush="Blue" Width="777" Background="#3b5998" Visibility="Visible">
+            <Canvas>
+                <Label Content="Customer ID :" Foreground="#dfe3ee" Canvas.Left="370" Canvas.Top="17" FontWeight="Bold" FontSize="20"/>
+                <Label Content="Name :" Foreground="#dfe3ee" Canvas.Left="22" Canvas.Top="10"  FontWeight="Bold" FontSize="20"/>
+                <Label Content="Phone :" Foreground="#dfe3ee" Canvas.Left="20" Canvas.Top="85"  FontWeight="Bold" FontSize="20"/>
+                <Label Content="Birth Date :" Foreground="#dfe3ee" Canvas.Left="377" Canvas.Top="231"  FontWeight="Bold" FontSize="20"/>
+                <TextBox x:Name="txtNum" Height="32" Canvas.Left="513" TextWrapping="Wrap"  Canvas.Top="22" Width="146" IsEnabled="False" BorderThickness="2" BorderBrush="#3b5998" Background="#8b9dc3" FontSize="20" FontWeight="Bold"/>
+                <TextBox x:Name="txtEName" Background="#8b9dc3"    Height="32" Canvas.Left="116" TextWrapping="Wrap"  Canvas.Top="18" Width="254"  FontSize="20" FontWeight="Bold" TabIndex="1"/>
+                <TextBox x:Name="txtPhone" Background="#8b9dc3"  Height="32" Canvas.Left="116" TextWrapping="Wrap"  Canvas.Top="90" Width="254" FontSize="20" FontWeight="Bold" TabIndex="3" TextChanged="txtPhone_TextChanged" PreviewTextInput="NumberOnly"/>
+                <DatePicker x:Name="dpdate" Background="#8b9dc3"  Canvas.Left="499" Canvas.Top="230" Width="252" Height="38" FontSize="20" FontWeight="Bold" TabIndex="9" />
+                <Label Content="WhatsApp :" Foreground="#dfe3ee" Canvas.Left="375" Canvas.Top="91"  FontWeight="Bold" FontSize="20"/>
+                <TextBox x:Name="txtWhats"  Background="#8b9dc3"  Height="32" Canvas.Left="499" TextWrapping="Wrap"  Canvas.Top="96" Width="252" FontSize="20" FontWeight="Bold" TabIndex="4" TextChanged="txtWhats_TextChanged" PreviewTextInput="NumberOnly"/>
+                <Label Content="Mail :"  Foreground="#dfe3ee" Canvas.Left="38" Canvas.Top="162"  FontWeight="Bold" FontSize="20"/>
+                <TextBox x:Name="txtmail" Background="#8b9dc3"  Height="32" Canvas.Left="116" TextWrapping="Wrap"  Canvas.Top="167" Width="254" FontSize="20" FontWeight="Bold" TabIndex="5"/>
+                <Label Content="Address :" Foreground="#dfe3ee" Canvas.Left="4" Canvas.Top="231"  FontWeight="Bold" FontSize="20"/>
+                <TextBox x:Name="txtaddress" Background="#8b9dc3"  Height="32" Canvas.Left="116" TextWrapping="Wrap"  Canvas.Top="236" Width="254" FontSize="20" FontWeight="Bold" TabIndex="7"/>
+                <Label Content="Facebook :" Foreground="#dfe3ee" Canvas.Left="375" Canvas.Top="162"  FontWeight="Bold" FontSize="20"/>
+                <TextBox x:Name="txtfacebook" Background="#8b9dc3"  Height="32" Canvas.Left="499" TextWrapping="Wrap"  Canvas.Top="167" Width="252" FontSize="20" FontWeight="Bold" TabIndex="6"/>
+                <Label Content="Other :" Foreground="#dfe3ee" Canvas.Left="377" Canvas.Top="304"  FontWeight="Bold" FontSize="20"/>
+                <TextBox x:Name="txtother" AcceptsReturn="True" VerticalScrollBarVisibility="Visible"   Background="#8b9dc3"  Height="66" Canvas.Left="499" TextWrapping="Wrap"  Canvas.Top="296" Width="244" FontSize="20" FontWeight="Bold" TabIndex="12"/>
+                <Label Content="Gender :" Foreground="#dfe3ee" Canvas.Left="10" Canvas.Top="305"  FontWeight="Bold" FontSize="20"/>
+                <RadioButton x:Name="rbmale" Content="Male" Canvas.Left="116" FontSize="20" FontWeight="Bold" Canvas.Top="311" TabIndex="11" IsChecked="True"/>
+                <RadioButton x:Name="rbFmale" Content="Female" Canvas.Left="228" FontWeight="Bold" FontSize="20" Canvas.Top="311"/>
+
+                <Button Content="Save" Canvas.Left="249" Canvas.Top="366" Width="109" Height="41" Click="Button_Click"/>
+                <Button Content="clear" Canvas.Left="89" Canvas.Top="366" Width="109" Height="41" Click="Button_Click_1"/>
+
+            </Canvas>
+        </GroupBox>
+        <GroupBox x:Name="add_Copy"  Height="769"   BorderBrush="Blue" Width="415" Background="#3b5998" Visibility="Visible" Canvas.Left="777">
+            <Canvas>
+                <Label Content="type :" Foreground="#dfe3ee" Canvas.Left="37" Canvas.Top="26" FontWeight="Bold" FontSize="20"/>
+                <Label Content="Name :" Foreground="#dfe3ee" Canvas.Left="20" Canvas.Top="85"  FontWeight="Bold" FontSize="20"/>
+                <ComboBox Name="cbx" HorizontalAlignment="Left"  FontSize="20" FontWeight="Bold"   Background="#3b5998" VerticalAlignment="Top" Width="253" Canvas.Left="105" Canvas.Top="30" DropDownClosed="cbx_DropDownClosed">
+                    <TextSearch.TextPath>Code</TextSearch.TextPath>
+                    <ComboBox.ItemTemplate >
+                        <DataTemplate>
+                            <TextBlock>
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}{0}  |  {1}">
+                                        <Binding Path="Code"/>
+                                        <Binding Path="ANAME"/>
+
+
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <DataGrid x:Name="dgr" Canvas.Top="236"  AutoGenerateColumns="False"  CanUserAddRows="True" ItemsSource="{Binding Items}" Height="169" Width="383" Background="#3b5998"  Canvas.Left="10">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Type" IsReadOnly="True" Binding="{Binding Path=SYRVIES_TYP_NUM}" Width="50"></DataGridTextColumn>
+                        <DataGridTextColumn Header="code" IsReadOnly="True"  Binding="{Binding Path=Code}" Width="50"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Name" IsReadOnly="True"  Binding="{Binding Path=NAME}" Width="150"></DataGridTextColumn>
+                        <DataGridTextColumn Header="QTY" IsReadOnly="True"  Binding="{Binding Path=QTY}" Width="50"></DataGridTextColumn>
+                        <DataGridTextColumn Header="Price" IsReadOnly="True"  Binding="{Binding Path=PRICE}" Width="80"></DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <ComboBox x:Name="cbx_Copy" HorizontalAlignment="Left"  FontSize="20" FontWeight="Bold"   Background="#3b5998" VerticalAlignment="Top" Width="253"  Canvas.Left="105" Canvas.Top="89" DropDownClosed="cbx_Copy_DropDownClosed">
+                    <TextSearch.TextPath>Code</TextSearch.TextPath>
+                    <ComboBox.ItemTemplate >
+                        <DataTemplate>
+                            <TextBlock>
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}{0}  |  {1} | {2} ">
+                                        <Binding Path="Code"/>
+                                        <Binding Path="NAME"/>
+                                        <Binding Path="QUNTATY"/>
+
+
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <Button x:Name="btn_add" Canvas.Left="153" Content="Add" Canvas.Top="198" Height="28" Width="83" Click="btn_add_Click"></Button>
+                <TextBox x:Name="txtzNum" Height="32" Canvas.Left="149" TextWrapping="Wrap"  Canvas.Top="460" Width="146" IsEnabled="False" BorderThickness="2" BorderBrush="#3b5998" Background="#8b9dc3" FontSize="20" FontWeight="Bold" TextChanged="txtzNum_TextChanged"/>
+                <Label Content="Price :" Foreground="#dfe3ee" Canvas.Left="62" Canvas.Top="455"  FontWeight="Bold" FontSize="20"/>
+                <TextBox x:Name="txtzNum_Copy" Text="1" Height="32" Canvas.Left="105" TextWrapping="Wrap"  Canvas.Top="148" Width="62"  BorderThickness="2" BorderBrush="#3b5998" Background="#8b9dc3" FontSize="20" FontWeight="Bold" TextChanged="txtzNum_Copy_TextChanged" PreviewTextInput="NumberOnly"/>
+                <Label Content="QTY :" Foreground="#dfe3ee" Canvas.Left="37" Canvas.Top="143"  FontWeight="Bold" FontSize="20"/>
+                <Button Canvas.Left="165" Content="New" Canvas.Top="536" Height="26" Width="83" Click="Button_Click_2"/>
+                <TextBox x:Name="txtzNum_Copy1"  Height="32" Canvas.Left="264" TextWrapping="Wrap"  Canvas.Top="148" Width="62"  BorderThickness="2" BorderBrush="#3b5998" Background="#8b9dc3" FontSize="20" FontWeight="Bold" PreviewTextInput="NumericOnly"/>
+                <Label Content="price :" Foreground="#dfe3ee" Canvas.Left="196" Canvas.Top="143"  FontWeight="Bold" FontSize="20"/>
+
+            </Canvas>
+        </GroupBox>
+        <GroupBox x:Name="add_Copy1"  Height="331" BorderBrush="Blue" Width="777" Background="#3b5998" Visibility="Visible" Canvas.Top="438">
+            <Canvas>
+                <Label Content="Order Number :" Foreground="#dfe3ee" Canvas.Left="135" Canvas.Top="15" FontWeight="Bold" FontSize="20"/>
+                <TextBox x:Name="txtNum2" Height="32" Canvas.Left="350" TextWrapping="Wrap"  Canvas.Top="20" Width="146" IsEnabled="False" BorderThickness="2" BorderBrush="#3b5998" Background="#8b9dc3" FontSize="20" FontWeight="Bold"/>
+                <Label Content="Total Price :" Foreground="#dfe3ee" Canvas.Left="174" Canvas.Top="188"  FontWeight="Bold" FontSize="20"/>
+                <TextBox x:Name="txtPhone2_Copy1" Background="#8b9dc3"  Height="32" Canvas.Left="350" TextWrapping="Wrap"  Canvas.Top="193" Width="122" FontSize="20" FontWeight="Bold" TabIndex="3" PreviewTextInput="NumericOnly" />
+
+                <Button Canvas.Left="258" Content="Save order" Canvas.Top="259" FontSize="20"  FontWeight="Bold"  Height="56" Width="122" Click="Button_Click_4"></Button>
+                <Label Content="Other:" Foreground="#dfe3ee" Canvas.Left="187" Canvas.Top="100"  FontWeight="Bold" FontSize="20"/>
+                <TextBox x:Name="txtPhone2_Copy"  AcceptsReturn="True" VerticalScrollBarVisibility="Visible"  Background="#8b9dc3"  Height="74" Canvas.Left="283" TextWrapping="Wrap"  Canvas.Top="83" Width="261" FontSize="20" FontWeight="Bold" TabIndex="3" />
+                <Button Canvas.Left="461" Content="Print" Canvas.Top="259" FontWeight="Bold" FontSize="20" Height="56" Width="122"/>
+                <Button Canvas.Left="86" Content="New" Canvas.Top="259" FontSize="20"  FontWeight="Bold"  Height="56" Width="122" Click="Button_Click_3"/>
+
+            </Canvas>
+        </GroupBox>
+
+    </Canvas>
+</Window>

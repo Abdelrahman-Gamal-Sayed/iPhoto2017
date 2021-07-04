@@ -1,0 +1,16 @@
+﻿<Window x:Class="iPhoto2017.iphoto2017"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:iPhoto2017"
+        mc:Ignorable="d"
+        Title="iphoto2017" Height="800" Width="1200" Background="#FF6079EC">
+    <Canvas >
+        <Button x:Name="btnAdd" Content="Customers" Canvas.Left="96" Canvas.Top="79" Width="138" Height="37" Click="btnAdd_Click"/>
+        <Button x:Name="btnOrder" Content="Orders" Canvas.Left="96" Canvas.Top="142" Width="138" Height="37" Click="btnOrder_Click"/>
+        <Button x:Name="btnAdd_Copy2" Content="Users" Canvas.Left="96" Canvas.Top="206" Width="138" Height="37" Click="btnAdd_Copy2_Click"/>
+        <Button x:Name="btntakeorder" Content="Take Order" Canvas.Left="96" Canvas.Top="269" Width="138" Height="37" Click="btntakeorder_Click"/>
+
+    </Canvas>
+</Window>
